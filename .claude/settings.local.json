@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx panda:*)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(npx vue-tsc:*)"
+    ]
+  }
+}

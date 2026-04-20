@@ -1,5 +1,45 @@
+/**
+ * Design tokens for the Nocturna Bogotana dark neon theme.
+ * Maps to PandaCSS token format for type-safe usage across components.
+ */
 export const themeTokens = {
   colors: {
+    bg: { value: "#0c0a24" },
+    surface: { value: "#13102e" },
+    surface2: { value: "#1c1840" },
+    fuchsia: {
+      DEFAULT: { value: "#f472b6" },
+      dim: { value: "rgba(244,114,182,0.15)" },
+      50: { value: "#fdf2f8" },
+      100: { value: "#fce7f3" },
+      200: { value: "#fbcfe8" },
+      300: { value: "#f9a8d4" },
+      400: { value: "#f472b6" },
+      500: { value: "#ec4899" },
+      600: { value: "#db2777" },
+      700: { value: "#be185d" },
+      800: { value: "#9d174d" },
+      900: { value: "#831843" },
+    },
+    cyan: {
+      DEFAULT: { value: "#22d3ee" },
+      400: { value: "#22d3ee" },
+      500: { value: "#06b6d4" },
+    },
+    gold: {
+      DEFAULT: { value: "#fbbf24" },
+      400: { value: "#fbbf24" },
+      500: { value: "#f59e0b" },
+      600: { value: "#d97706" },
+    },
+    navy: {
+      DEFAULT: { value: "#1e3a5f" },
+      400: { value: "#1e3a5f" },
+      500: { value: "#1a3352" },
+    },
+    text: { value: "#e2e8f0" },
+    muted: { value: "#64748b" },
+    white: { value: "#ffffff" },
     gray: {
       50: { value: "#fafafa" },
       100: { value: "#f5f5f5" },
@@ -12,18 +52,6 @@ export const themeTokens = {
       800: { value: "#262626" },
       900: { value: "#171717" },
     },
-    wine: {
-      50: { value: "#fdf2f8" },
-      100: { value: "#fce7f3" },
-      200: { value: "#fbcfe8" },
-      300: { value: "#f8a5d4" },
-      400: { value: "#f472b6" },
-      500: { value: "#ec4899" },
-      600: { value: "#db2777" },
-      700: { value: "#be185d" },
-      800: { value: "#9d174d" },
-      900: { value: "#831843" },
-    },
     amber: {
       50: { value: "#fffbeb" },
       100: { value: "#fef3c7" },
@@ -35,6 +63,18 @@ export const themeTokens = {
       700: { value: "#b45309" },
       800: { value: "#92400e" },
       900: { value: "#78350f" },
+    },
+    wine: {
+      50: { value: "#fdf2f8" },
+      100: { value: "#fce7f3" },
+      200: { value: "#fbcfe8" },
+      300: { value: "#f8a5d4" },
+      400: { value: "#f472b6" },
+      500: { value: "#ec4899" },
+      600: { value: "#db2777" },
+      700: { value: "#be185d" },
+      800: { value: "#9d174d" },
+      900: { value: "#831843" },
     },
     green: {
       50: { value: "#f0fdf4" },
@@ -58,6 +98,7 @@ export const themeTokens = {
     5: { value: "1.25rem" },
     6: { value: "1.5rem" },
     8: { value: "2rem" },
+    10: { value: "2.5rem" },
     12: { value: "3rem" },
     16: { value: "4rem" },
   },
@@ -81,6 +122,7 @@ export const themeTokens = {
     md: { value: "0.5rem" },
     lg: { value: "0.75rem" },
     xl: { value: "1rem" },
+    "2xl": { value: "1.125rem" },
     full: { value: "9999px" },
   },
   shadows: {
@@ -89,6 +131,8 @@ export const themeTokens = {
     md: { value: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)" },
     lg: { value: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" },
     xl: { value: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" },
+    card: { value: "0 12px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3)" },
+    neon: { value: "0 0 24px rgba(244,114,182,0.5)" },
   },
   fontSizes: {
     xs: { value: "0.75rem" },
@@ -100,6 +144,16 @@ export const themeTokens = {
     "3xl": { value: "1.875rem" },
     "4xl": { value: "2.25rem" },
     "5xl": { value: "3rem" },
+    "6xl": { value: "4.25rem" },
+  },
+  fonts: {
+    body: { value: "'DM Sans', sans-serif" },
+    heading: { value: "'Bebas Neue', sans-serif" },
+    accent: { value: "'Dancing Script', cursive" },
+    manrope: { value: "'Manrope', sans-serif" },
+    inter: { value: "'Inter', sans-serif" },
+    garamond: { value: "'Cormorant Garamond', serif" },
+    montserrat: { value: "'Montserrat', sans-serif" },
   },
   durations: {
     fastest: { value: "50ms" },

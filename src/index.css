@@ -1,1 +1,25 @@
 @layer reset, base, tokens, recipes, utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0c0a24;
+  color: #e2e8f0;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #13102e;
+}
+::-webkit-scrollbar-thumb {
+  background: #f472b6;
+  border-radius: 2px;
+}

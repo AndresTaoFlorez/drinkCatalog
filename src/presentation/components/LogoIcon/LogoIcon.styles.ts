@@ -1,5 +1,6 @@
 import { styled } from "@styled-system/jsx";
 
+/** Wrapper for the drink glass SVG logo icon. */
 export const LogoWrapper = styled("div", {
   base: {
     display: "flex",
@@ -20,7 +21,7 @@ export const LogoWrapper = styled("div", {
       display: "block",
     },
     "& .logo-bg": {
-      fill: "wine.700",
+      fill: "fuchsia.700",
     },
     "& .logo-glass": {
       fill: "amber.100",

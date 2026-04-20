@@ -1,46 +1,55 @@
 import { styled } from "@styled-system/jsx";
 
+/** Root page container with dark background. */
 export const Page = styled("div", {
   base: {
     minHeight: "100vh",
-    bg: "gray.50",
+    bg: "bg",
     display: "flex",
     flexDirection: "column",
-  },
-});
-export const Content = styled("div", {
-  base: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
-export const TitleContent = styled("div", {
+/** Constrained content section with horizontal padding. */
+export const Section = styled("section", {
   base: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "6",
     px: "4",
+    pt: "16",
+    maxWidth: "1200px",
+    mx: "auto",
+    w: "full",
+    "@media (min-width: 400px)": {
+      px: "16",
+    },
   },
 });
 
-export const Title = styled("h1", {
+/** Page logo displayed below the topbar. */
+export const PageLogo = styled("div", {
   base: {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    color: "gray.900",
-    textAlign: "center",
-    mt: "1",
+    display: "flex",
+    justifyContent: "center",
+    pt: "8",
+    pb: "4",
   },
 });
 
-export const Tagline = styled("p", {
+/** Logo image. */
+export const PageLogoImg = styled("img", {
   base: {
-    fontSize: "lg",
-    color: "gray.600",
-    textAlign: "center",
+    h: "420px",
+    w: "auto",
+    objectFit: "contain",
+    filter: "drop-shadow(0 0 12px rgba(244,114,182,0.4))",
+  },
+});
+
+/** Product cards grid layout (4 columns). */
+export const ProductsGrid = styled("div", {
+  base: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "6",
+    pt: "10",
   },
 });

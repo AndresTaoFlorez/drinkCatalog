@@ -1,0 +1,42 @@
+name: Deploy to Droplet
+
+on:
+  push:
+    branches: [main]
+
+# -----------------------------------------------------------------------
+# SECRETS REQUERIDOS en GitHub (Settings > Secrets > Actions):
+#   - DEPLOY_HOST       : IP o dominio del droplet
+#   - DEPLOY_USER       : Usuario SSH (ej: root)
+#   - DEPLOY_SSH_KEY    : Llave privada SSH completa (contenido del archivo)
+#
+# El proyecto se clona/actualiza en /home/pages/drinkCatalog
+# -----------------------------------------------------------------------
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            PROJECT_DIR="/home/pages/drinkCatalog"
+
+            # Clone if first time, otherwise pull
+            if [ ! -d "$PROJECT_DIR/.git" ]; then
+              mkdir -p /home/pages
+              git clone ${{ github.server_url }}/${{ github.repository }}.git "$PROJECT_DIR"
+            fi
+
+            cd "$PROJECT_DIR"
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Build and restart container
+            docker compose down || true
+            docker compose up -d --build

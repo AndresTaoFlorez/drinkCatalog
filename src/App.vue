@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import HomePage from '@/presentation/pages/HomePage/HomePage.vue'
-</script>
-
+<!-- Main layout shell with router outlet -->
 <template>
-  <HomePage />
+  <router-view />
 </template>

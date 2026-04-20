@@ -16,3 +16,7 @@ app.use(router);
 app.config.globalProperties.console = console;
 
 app.mount("#app");
+
+document.fonts.ready.then(() => {
+  document.body.classList.add("app-ready");
+});
