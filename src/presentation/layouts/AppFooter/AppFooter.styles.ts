@@ -27,9 +27,16 @@ export const FooterInner = styled("div", {
 export const RecipeGrid = styled("div", {
   base: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "5",
+    gridTemplateColumns: "1fr",
+    gap: "4",
     mb: "10",
+    "@media (min-width: 500px)": {
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: "5",
+    },
+    "@media (min-width: 768px)": {
+      gridTemplateColumns: "repeat(3, 1fr)",
+    },
   },
 });
 
@@ -60,14 +67,14 @@ export const RecipeThumb = styled("div", {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "40px",
+    fontSize: "4xl+",
   },
 });
 
 /** Recipe name text. */
 export const RecipeName = styled("div", {
   base: {
-    fontSize: "15px",
+    fontSize: "md",
     fontWeight: "semibold",
     mb: "1",
   },
@@ -87,10 +94,17 @@ export const FooterBottom = styled("div", {
     borderTop: "1px solid rgba(255,255,255,0.06)",
     pt: "5",
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    gap: "4",
     alignItems: "center",
+    textAlign: "center",
     fontSize: "xs",
     color: "muted",
+    "@media (min-width: 500px)": {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      textAlign: "left",
+    },
   },
 });
 
@@ -106,7 +120,7 @@ export const NeonLogo = styled("div", {
 export const NeonScript = styled("span", {
   base: {
     fontFamily: "accent",
-    fontSize: "22px",
+    fontSize: "xl+",
     fontWeight: "bold",
     background: "linear-gradient(100deg, #f472b6 0%, #c084fc 40%, #22d3ee 100%)",
     backgroundClip: "text",
@@ -119,7 +133,7 @@ export const NeonScript = styled("span", {
 /** Gold badge text under the logo. */
 export const NeonBadge = styled("span", {
   base: {
-    fontSize: "9px",
+    fontSize: "3xs",
     fontWeight: "bold",
     letterSpacing: "5px",
     color: "gold",
@@ -132,12 +146,97 @@ export const NeonBadge = styled("span", {
 export const FooterLinks = styled("div", {
   base: {
     display: "flex",
-    gap: "5",
+    gap: "4",
+    flexWrap: "wrap",
+    justifyContent: "center",
     "& a": {
       color: "muted",
       textDecoration: "none",
       transition: "color 0.2s",
       _hover: { color: "fuchsia.400" },
+    },
+    "@media (min-width: 500px)": {
+      gap: "5",
+      justifyContent: "flex-start",
+    },
+  },
+});
+
+/** Contact section grid. */
+export const ContactGrid = styled("div", {
+  base: {
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "8",
+    pb: "10",
+    mb: "10",
+    // borderBottom: "1px solid rgba(255,255,255,0.06)",
+    "@media (min-width: 640px)": {
+      gridTemplateColumns: "1fr 1fr 1fr",
+    },
+  },
+});
+
+/** Contact block wrapper. */
+export const ContactBlock = styled("div", {
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "3",
+  },
+});
+
+/** Contact block title. */
+export const ContactTitle = styled("div", {
+  base: {
+    fontSize: "xs",
+    textTransform: "uppercase",
+    letterSpacing: "2px",
+    color: "fuchsia.400",
+    fontWeight: "semibold",
+    mb: "1",
+  },
+});
+
+/** Contact detail line. */
+export const ContactLine = styled("div", {
+  base: {
+    fontSize: "sm",
+    color: "text",
+    display: "flex",
+    alignItems: "center",
+    gap: "2",
+    lineHeight: 1.6,
+  },
+});
+
+/** Social icons row. */
+export const SocialRow = styled("div", {
+  base: {
+    display: "flex",
+    gap: "3",
+    mt: "1",
+  },
+});
+
+/** Social icon link. */
+export const SocialLink = styled("a", {
+  base: {
+    w: "38px",
+    h: "38px",
+    borderRadius: "full",
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "muted",
+    transition: "color 0.2s, background 0.2s, border-color 0.2s",
+    cursor: "pointer",
+    _hover: {
+      color: "fuchsia.400",
+      background: "rgba(244,114,182,0.1)",
+      borderColor: "rgba(244,114,182,0.3)",
     },
   },
 });

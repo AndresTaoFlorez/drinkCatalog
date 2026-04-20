@@ -1,15 +1,23 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { animateIn } from './TopBar.animations'
+import { useCartStore } from '@/stores/cart'
+import CartPopup from '@/presentation/components/CartPopup/CartPopup.vue'
 import {
   NavOuter, NavInner, NavSide,
-  NavPill, NavIconBtn
+  NavBtn, NavLabel, CartBadge
 } from './TopBar.styles'
 
 /**
  * Sticky top navigation bar with menu, location, search, account, and cart.
  */
 const barRef = ref<HTMLElement | null>(null)
+const cart = useCartStore()
+const showCart = ref(false)
+const route = useRoute()
+const router = useRouter()
+const isHome = computed(() => route.path === '/')
 
 onMounted(() => {
   animateIn(barRef)
@@ -19,45 +27,53 @@ onMounted(() => {
 <template>
   <NavOuter ref="barRef">
     <NavInner>
-      <!-- Left side: menu + location -->
+      <!-- Left side -->
       <NavSide align="left">
-        <NavPill>
-          <svg width="14" height="12" viewBox="0 0 14 12" fill="none">
-            <rect width="14" height="1.5" rx="1" fill="currentColor"/>
-            <rect y="5" width="10" height="1.5" rx="1" fill="currentColor"/>
-            <rect y="10" width="14" height="1.5" rx="1" fill="currentColor"/>
+        <NavBtn v-if="!isHome" @click="router.push({ name: 'home' })">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Menu
-        </NavPill>
-        <NavPill>
-          <svg width="11" height="15" viewBox="0 0 11 15" fill="none">
-            <path d="M5.5 0C2.46 0 0 2.46 0 5.5c0 4.12 5.5 9.5 5.5 9.5S11 9.62 11 5.5C11 2.46 8.54 0 5.5 0Zm0 7.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" fill="currentColor"/>
+          <NavLabel>Inicio</NavLabel>
+        </NavBtn>
+        <NavBtn title="Menu">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3 5h12M3 9h8M3 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          Bogota
-        </NavPill>
+          <NavLabel>Menu</NavLabel>
+        </NavBtn>
+        <NavBtn title="Ubicacion">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 1.5C6.1 1.5 3.75 3.85 3.75 6.75c0 4.5 5.25 9.75 5.25 9.75s5.25-5.25 5.25-9.75c0-2.9-2.35-5.25-5.25-5.25Zm0 7.13a1.88 1.88 0 1 1 0-3.76 1.88 1.88 0 0 1 0 3.76Z" fill="currentColor"/>
+          </svg>
+          <NavLabel>Bogota</NavLabel>
+        </NavBtn>
       </NavSide>
 
-      <!-- Right side: search, account, cart -->
+      <!-- Right side -->
       <NavSide align="right">
-        <NavIconBtn title="Buscar">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <NavBtn title="Buscar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 12l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-        </NavIconBtn>
-        <NavIconBtn title="Mi cuenta">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M2 14c0-3.31 2.69-5 6-5s6 1.69 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </NavBtn>
+        <NavBtn title="Mi cuenta">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-        </NavIconBtn>
-        <NavIconBtn variant="cart" title="Carrito">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M1 1h2l2 8h7l2-6H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="6.5" cy="12.5" r="1" fill="currentColor"/>
-            <circle cx="11.5" cy="12.5" r="1" fill="currentColor"/>
-          </svg>
-        </NavIconBtn>
+        </NavBtn>
+        <div style="position:relative">
+          <NavBtn :active="showCart || cart.totalItems > 0" title="Carrito" @click.stop="showCart = !showCart">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M1.5 1.5h2.25l2.25 9h7.88l2.25-6.75H5.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="7.5" cy="14.25" r="1.13" fill="currentColor"/>
+              <circle cx="13.13" cy="14.25" r="1.13" fill="currentColor"/>
+            </svg>
+            <CartBadge v-if="cart.totalItems > 0">{{ cart.totalItems }}</CartBadge>
+          </NavBtn>
+          <CartPopup v-if="showCart" @close="showCart = false" />
+        </div>
       </NavSide>
     </NavInner>
   </NavOuter>

@@ -48,6 +48,8 @@ export interface Drink {
   };
   /** Suggested serve or pairing. */
   serve: string;
+  /** Popularity score from 1 (lowest) to 100 (highest). */
+  popularity: number;
 }
 
 /**

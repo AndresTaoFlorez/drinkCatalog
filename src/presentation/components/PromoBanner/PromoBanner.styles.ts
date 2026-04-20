@@ -3,14 +3,14 @@ import { styled } from "@styled-system/jsx";
 /** Gradient promotional banner with decorative overlay. */
 export const Banner = styled("div", {
   base: {
-    borderRadius: "18px",
+    borderRadius: "16px",
     background: "linear-gradient(130deg, #1e3a5f 0%, #312e81 55%, #4c1d95 100%)",
     border: "1px solid rgba(196,181,253,0.18)",
-    px: "10",
-    py: "8",
+    px: "5",
+    py: "6",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    gap: "4",
     position: "relative",
     overflow: "hidden",
     _before: {
@@ -18,6 +18,17 @@ export const Banner = styled("div", {
       position: "absolute",
       inset: 0,
       background: "radial-gradient(ellipse at 75% 50%, rgba(244,114,182,0.18) 0%, transparent 60%)",
+    },
+    "@media (min-width: 500px)": {
+      px: "8",
+      py: "8",
+      borderRadius: "18px",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    "@media (min-width: 768px)": {
+      px: "10",
     },
   },
 });
@@ -33,7 +44,7 @@ export const PromoText = styled("div", {
 /** Promo eyebrow label. */
 export const PromoEyebrow = styled("div", {
   base: {
-    fontSize: "11px",
+    fontSize: "xs",
     color: "fuchsia.400",
     textTransform: "uppercase",
     letterSpacing: "3px",
@@ -45,10 +56,16 @@ export const PromoEyebrow = styled("div", {
 export const PromoH = styled("div", {
   base: {
     fontFamily: "heading",
-    fontSize: "42px",
+    fontSize: "3xl",
     color: "white",
     lineHeight: 1,
     mb: "1.5",
+    "@media (min-width: 500px)": {
+      fontSize: "4xl",
+    },
+    "@media (min-width: 768px)": {
+      fontSize: "5xl",
+    },
   },
 });
 

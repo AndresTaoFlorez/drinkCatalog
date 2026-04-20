@@ -3,7 +3,7 @@ import { styled } from "@styled-system/jsx";
 /** Small uppercase label above a section title. */
 export const Eyebrow = styled("div", {
   base: {
-    fontSize: "11px",
+    fontSize: "xs",
     color: "fuchsia.400",
     textTransform: "uppercase",
     letterSpacing: "3px",
@@ -14,9 +14,13 @@ export const Eyebrow = styled("div", {
 /** Main section title text. */
 export const Title = styled("div", {
   base: {
-    fontSize: "xl",
+    fontSize: "lg",
     fontWeight: "bold",
     color: "text",
-    mb: "4",
+    mb: "3",
+    "@media (min-width: 500px)": {
+      fontSize: "xl",
+      mb: "4",
+    },
   },
 });

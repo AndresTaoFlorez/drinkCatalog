@@ -25,13 +25,16 @@ export const Card = styled("div", {
 export const CardBottle = styled("div", {
   base: {
     w: "full",
-    h: "180px",
+    h: "140px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     transition: "transform 0.35s",
     ":hover > &": {
       transform: "translateY(-4px) scale(1.03)",
+    },
+    "@media (min-width: 500px)": {
+      h: "180px",
     },
   },
 });
@@ -44,7 +47,7 @@ export const CardBadge = styled("div", {
     right: "12px",
     background: "fuchsia.400",
     color: "white",
-    fontSize: "11px",
+    fontSize: "xs",
     fontWeight: "bold",
     w: "42px",
     h: "42px",
@@ -62,19 +65,24 @@ export const CardBadge = styled("div", {
 /** Card body containing text content. */
 export const CardBody = styled("div", {
   base: {
-    px: "5",
-    pt: "4",
-    pb: "5",
+    px: "3",
+    pt: "3",
+    pb: "4",
     flex: 1,
     display: "flex",
     flexDirection: "column",
+    "@media (min-width: 500px)": {
+      px: "5",
+      pt: "4",
+      pb: "5",
+    },
   },
 });
 
 /** Category and volume label. */
 export const CardCat = styled("div", {
   base: {
-    fontSize: "10px",
+    fontSize: "2xs",
     color: "muted",
     textTransform: "uppercase",
     letterSpacing: "1.5px",
@@ -115,10 +123,13 @@ export const CardPrices = styled("div", {
 /** Current price text. */
 export const CardPrice = styled("span", {
   base: {
-    fontSize: "xl",
+    fontSize: "base",
     fontWeight: "bold",
     color: "gold.400",
     lineHeight: 1,
+    "@media (min-width: 500px)": {
+      fontSize: "xl",
+    },
   },
 });
 
@@ -135,14 +146,14 @@ export const CardOldPrice = styled("span", {
 /** Circular add-to-cart button. */
 export const CardAddBtn = styled("button", {
   base: {
-    w: "38px",
-    h: "38px",
+    w: "32px",
+    h: "32px",
     borderRadius: "full",
     background: "rgba(244,114,182,0.12)",
     border: "1px solid rgba(244,114,182,0.25)",
     color: "fuchsia.400",
     cursor: "pointer",
-    fontSize: "20px",
+    fontSize: "lg",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -153,6 +164,11 @@ export const CardAddBtn = styled("button", {
       background: "fuchsia.400",
       color: "white",
       transform: "scale(1.1)",
+    },
+    "@media (min-width: 500px)": {
+      w: "38px",
+      h: "38px",
+      fontSize: "xl",
     },
   },
 });

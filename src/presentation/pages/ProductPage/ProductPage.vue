@@ -3,8 +3,10 @@ import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import type { Drink } from '@/domain/models/drink.model'
 import { formatPrice } from '@/application/utils/formatPrice'
+import { useCartStore } from '@/stores/cart'
 import { createDrinkRepository } from '@/infrastructure'
 import TopBar from '@/presentation/layouts/TopBar/TopBar.vue'
+import AppFooter from '@/presentation/layouts/AppFooter/AppFooter.vue'
 import BottleSvg from '@/presentation/components/BottleSvg/BottleSvg.vue'
 import {
   Page, Content, BottleColumn, InfoColumn,
@@ -20,6 +22,7 @@ import {
  */
 const route = useRoute()
 const router = useRouter()
+const cart = useCartStore()
 const repo = createDrinkRepository()
 const drink = ref<Drink | null>(null)
 
@@ -34,7 +37,14 @@ onMounted(async () => {
 })
 
 function goBack() {
-  router.push({ name: 'home' })
+  router.back()
+}
+
+function addToCart() {
+  if (drink.value) {
+    const d = drink.value
+    cart.addItem(d.id, d.name, d.price, d.color, d.stroke, d.category)
+  }
 }
 </script>
 
@@ -56,13 +66,6 @@ function goBack() {
 
       <!-- Product info -->
       <InfoColumn>
-        <BackLink @click="goBack">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Volver al catalogo
-        </BackLink>
-
         <CategoryBadge>{{ drink.category }} &middot; {{ drink.origin }}</CategoryBadge>
         <ProductTitle>{{ drink.name }}</ProductTitle>
         <ProductDesc>{{ drink.description }}</ProductDesc>
@@ -112,8 +115,10 @@ function goBack() {
           <DiscountTag v-if="drink.discount">-{{ drink.discount }}%</DiscountTag>
         </PriceRow>
 
-        <AddToCartBtn>Agregar al carrito</AddToCartBtn>
+        <AddToCartBtn @click="addToCart">Agregar al carrito</AddToCartBtn>
       </InfoColumn>
     </Content>
+
+    <AppFooter />
   </Page>
 </template>

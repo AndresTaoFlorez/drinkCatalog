@@ -26,30 +26,36 @@ export function animateContent(el: Ref<HTMLElement | null>) {
   );
 }
 
-/** Night city neon logo: floating + pulsing glow cycle. */
+/** Night city neon logo: dramatic entrance, floating + pulsing glow cycle. */
 export function animateLogo(el: Ref<HTMLElement | null>) {
   const dom = resolveEl(el);
   if (!dom) return;
 
-  // Entrance
-  gsap.from(dom, {
-    opacity: 0,
-    scale: 0.9,
-    duration: 0.8,
-    ease: "power2.out",
-  });
+  // Dramatic entrance
+  const enter = gsap.timeline({ defaults: { ease: "power3.out" } });
+  enter.fromTo(dom,
+    { opacity: 0, scale: 0.75, y: 30, filter: "drop-shadow(0 0 0px rgba(244,114,182,0)) drop-shadow(0 0 0px rgba(34,211,238,0))" },
+    { opacity: 1, scale: 1, y: 0, duration: 1.2 },
+  );
+  enter.to(dom, {
+    filter: "drop-shadow(0 0 20px rgba(244,114,182,0.6)) drop-shadow(0 0 50px rgba(34,211,238,0.25))",
+    duration: 0.6,
+    ease: "power1.out",
+  }, 0.5);
 
-  // Float
+  // Float with subtle rotation
   gsap.to(dom, {
-    y: -10,
-    duration: 3,
+    y: -12,
+    rotation: 1.5,
+    duration: 3.5,
     ease: "sine.inOut",
     repeat: -1,
     yoyo: true,
+    delay: 1.2,
   });
 
-  // Neon glow pulse — cycles through pink, cyan, and warm tones
-  gsap.timeline({ repeat: -1 })
+  // Neon glow pulse — cycles through pink, cyan, purple and gold
+  gsap.timeline({ repeat: -1, delay: 1.8 })
     .to(dom, {
       filter: "drop-shadow(0 0 18px rgba(244,114,182,0.7)) drop-shadow(0 0 40px rgba(244,114,182,0.3))",
       duration: 2,

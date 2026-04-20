@@ -3,9 +3,13 @@ import { styled } from "@styled-system/jsx";
 /** Outer wrapper with horizontal padding. */
 export const HeroOuter = styled("div", {
   base: {
-    px: "4",
-    pt: "6",
-    "@media (min-width: 400px)": {
+    px: "2",
+    pt: "4",
+    "@media (min-width: 500px)": {
+      px: "8",
+      pt: "6",
+    },
+    "@media (min-width: 768px)": {
       px: "16",
     },
   },
@@ -16,13 +20,20 @@ export const HeroSection = styled("section", {
   base: {
     position: "relative",
     overflow: "visible",
-    h: "400px",
+    h: "260px",
     touchAction: "pan-y",
     cursor: "grab",
     userSelect: "none",
-    borderRadius: "20px",
+    borderRadius: "16px",
     maxWidth: "1200px",
     mx: "auto",
+    "@media (min-width: 500px)": {
+      h: "340px",
+      borderRadius: "20px",
+    },
+    "@media (min-width: 768px)": {
+      h: "400px",
+    },
   },
 });
 
@@ -33,17 +44,34 @@ export const HeroSlide = styled("div", {
     inset: 0,
     overflow: "hidden",
     pointerEvents: "none",
-    borderRadius: "20px",
+    borderRadius: "16px",
     willChange: "opacity, transform",
     background: "#16133a",
+    "@media (min-width: 500px)": {
+      borderRadius: "20px",
+    },
   },
 });
 
-/** Background layer for city skyline SVGs. */
+/** Background layer for hero images. */
 export const CityBg = styled("div", {
   base: {
     position: "absolute",
     inset: 0,
+    borderRadius: "16px",
+    _after: {
+      content: '""',
+      position: "absolute",
+      inset: 0,
+      background: "linear-gradient(90deg, rgba(12,10,36,0.88) 0%, rgba(12,10,36,0.55) 50%, rgba(12,10,36,0.15) 100%)",
+      borderRadius: "16px",
+    },
+    "@media (min-width: 500px)": {
+      borderRadius: "20px",
+      _after: {
+        borderRadius: "20px",
+      },
+    },
   },
 });
 
@@ -52,21 +80,31 @@ export const HeroContent = styled("div", {
   base: {
     position: "absolute",
     top: "50%",
-    left: "10%",
+    left: "5%",
+    right: "5%",
     transform: "translateY(-50%)",
     pointerEvents: "none",
-    maxWidth: "480px",
+    "@media (min-width: 500px)": {
+      left: "8%",
+      right: "auto",
+      maxWidth: "420px",
+    },
+    "@media (min-width: 768px)": {
+      left: "10%",
+      maxWidth: "480px",
+    },
   },
 });
 
 /** Small uppercase eyebrow label above the hero title. */
 export const HeroEyebrow = styled("div", {
   base: {
-    fontSize: "11px",
+    fontSize: "xs",
     color: "fuchsia.400",
     textTransform: "uppercase",
     letterSpacing: "3px",
     mb: "2.5",
+    textShadow: "0 0 12px rgba(244,114,182,0.6)",
   },
 });
 
@@ -74,25 +112,43 @@ export const HeroEyebrow = styled("div", {
 export const HeroH = styled("div", {
   base: {
     fontFamily: "manrope",
-    fontSize: "6xl",
+    fontSize: "3xl",
     fontWeight: "700",
     fontStyle: "normal",
     lineHeight: 1.05,
     background: "linear-gradient(100deg, #f472b6 0%, #c084fc 40%, #22d3ee 100%)",
     backgroundClip: "text",
     color: "transparent",
-    filter: "drop-shadow(0 0 20px rgba(244,114,182,0.4)) drop-shadow(0 0 40px rgba(34,211,238,0.2))",
-    mb: "4",
+    filter: "drop-shadow(0 0 24px rgba(244,114,182,0.5)) drop-shadow(0 0 48px rgba(34,211,238,0.3))",
+    textShadow: "0 2px 30px rgba(0,0,0,0.6)",
+    mb: "3",
+    "@media (min-width: 500px)": {
+      fontSize: "4xl+",
+      mb: "4",
+    },
+    "@media (min-width: 768px)": {
+      fontSize: "6xl",
+    },
   },
 });
 
 /** Hero subtitle/description text. */
 export const HeroSub = styled("div", {
   base: {
-    fontSize: "15px",
-    color: "rgba(255,255,255,0.55)",
-    mb: "6",
+    fontSize: "sm",
+    color: "rgba(255,255,255,0.8)",
+    mb: "4",
     lineHeight: 1.5,
+    textShadow: "0 1px 16px rgba(0,0,0,0.7), 0 0 4px rgba(0,0,0,0.5)",
+    display: "-webkit-box",
+    WebkitLineClamp: "2",
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    "@media (min-width: 500px)": {
+      fontSize: "md",
+      mb: "6",
+      WebkitLineClamp: "3",
+    },
   },
 });
 
@@ -104,10 +160,10 @@ export const HeroBtn = styled("button", {
     gap: "2",
     background: "fuchsia.400",
     color: "white",
-    fontSize: "sm",
+    fontSize: "xs",
     fontWeight: "semibold",
-    px: "8",
-    py: "3",
+    px: "5",
+    py: "2.5",
     borderRadius: "full",
     border: "none",
     cursor: "pointer",
@@ -117,6 +173,11 @@ export const HeroBtn = styled("button", {
     _hover: {
       transform: "scale(1.04)",
       boxShadow: "0 0 36px rgba(244,114,182,0.7)",
+    },
+    "@media (min-width: 500px)": {
+      fontSize: "sm",
+      px: "8",
+      py: "3",
     },
   },
 });
@@ -131,6 +192,7 @@ export const HeroDots = styled("div", {
     display: "flex",
     gap: "1.5",
     pointerEvents: "all",
+    zIndex: 10,
   },
 });
 
@@ -164,7 +226,7 @@ export const HeroArrow = styled("button", {
     backdropFilter: "blur(8px)",
     border: "1px solid rgba(255,255,255,0.2)",
     color: "white",
-    fontSize: "22px",
+    fontSize: "xl+",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

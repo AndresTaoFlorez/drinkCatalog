@@ -53,3 +53,8 @@ Core Traits:
 - Reusable: One logic block can power multiple Views (.tsx files).
 - Clean: It moves business logic out of the UI, preventing "fat" components.
 - Naming: Always prefixed with use (e.g., useDrink, useToggle).
+
+
+# Droplet
+
+http://64.23.152.231:8080/
